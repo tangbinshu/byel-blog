@@ -1,0 +1,50 @@
+server:
+  port: 8080
+  servlet:
+    # 应用的访问路径
+    context-path: /byel/
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+spring:
+  application:
+    name: byel-blogs
+  datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/tang?useSSL=false&requireSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+      username: root
+      password: root
+      type: com.alibaba.druid.pool.DruidDataSource
+      druid:
+        max-active: 20
+        initial-size: 2
+        max-wait: 60000
+        min-idle: 2
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 30000
+        test-on-borrow: false
+        test-on-return: false
+        test-while-idle: true
+        filter: stat,wall
+        connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  aop:
+    proxy-target-class: true
+    auto: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  typeAliasesPackage: com.byelblog
+  mapper-locations: classpath*:mapper/*.xml
+
+
+
+
+
