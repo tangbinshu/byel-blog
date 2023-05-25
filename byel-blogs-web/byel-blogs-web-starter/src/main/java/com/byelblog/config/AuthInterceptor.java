@@ -1,5 +1,6 @@
 package com.byelblog.config;
 
+import com.byelblog.common.result.Const;
 import com.byelblog.utils.TokenUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -13,9 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String uri = request.getRequestURI();
-        System.out.println("当前路径："+uri);
+        String uri = request.getRequestURI(); // 获取请求的URI，例如："/api/example"
 
+        if(uri.matches(Const.NO_INTERCEPTOR_PATH)){
+            return  true;
+        }
+        System.out.println("当前路径："+uri);
         if(!(handler instanceof HandlerMethod)){
             return true;
         }

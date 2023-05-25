@@ -61,4 +61,7 @@ public interface UsersService {
      * */
     int qryLogin(Users user);
 
+    int qryUserNameExist(Users user);
+
+    int qryEmailExist(Users user);
 }

@@ -27,6 +27,19 @@
           and password = #{password}
     </select>
 
+    <!--查询单个-->
+    <select id="qryUserNameExist" resultType="java.lang.Integer">
+        select count(1)
+        from users
+        where username = #{username}
+    </select>
+    <!--查询单个-->
+    <select id="qryEmailExist" resultType="java.lang.Integer">
+        select count(1)
+        from users
+        where email = #{email}
+    </select>
+
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UsersMap">
         select

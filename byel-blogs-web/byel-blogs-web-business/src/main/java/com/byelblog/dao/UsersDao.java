@@ -79,5 +79,8 @@ public interface UsersDao {
 
     int qryLogin(Users users);
 
+    int qryUserNameExist(Users user);
+
+    int qryEmailExist(Users user);
 }
 

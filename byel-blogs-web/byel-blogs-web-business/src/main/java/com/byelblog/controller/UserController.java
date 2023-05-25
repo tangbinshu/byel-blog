@@ -6,6 +6,8 @@ import com.byelblog.common.result.ResponseResult;
 import com.byelblog.entity.Users;
 import com.byelblog.service.UsersService;
 import com.byelblog.utils.TokenUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +16,18 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin
+
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UsersService usersService;
 
-    @GetMapping("register")
+    @PostMapping("register")
     public Response<String> register(@RequestBody JSONObject object , HttpServletRequest httpServletRequest ){
         Users user = object.getObject("user",Users.class);
         if(user==null){
@@ -39,13 +44,25 @@ public class UserController {
             return Response.fail("邮箱不可为空");
         }
 
+        //判断用户名是否被注册
+        if(usersService.qryUserNameExist(user)!=0){
+            return Response.fail("该用户名已被注册");
+        }
+
+        //判断邮箱是否被注册
+        if(usersService.qryEmailExist(user)!=0){
+            return Response.fail("该邮箱已被注册");
+        }
+
+
+
         usersService.insert(user);
         return Response.ok("注册成功");
     }
 
-    @GetMapping("login")
+    @PostMapping("login")
     public Response<String> login(@RequestBody JSONObject object , HttpServletRequest httpServletRequest ){
-        System.out.println(object);
+        logger.info("object----{}"+object);
         Users user = object.getObject("user",Users.class);
         if(user==null){
             return Response.fail("请输入账户密码");
@@ -68,7 +85,7 @@ public class UserController {
 
         return Response.ok("登录成功",token);
     }
-    //测试联通
+
     @GetMapping("check")
     public ResponseResult<Map<String,String>> check(){
         Map<String,String > map = new HashMap<>();

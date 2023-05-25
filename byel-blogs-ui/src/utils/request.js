@@ -4,9 +4,11 @@ import { getToken, setToken } from '@/utils/auth'
 import store from '@/store'
 import router from '@/router'
 
-axios.defaults.baseURL = 'http://localhost:8080/byel/'
+
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
+   baseURL : 'http://localhost:8080/byel/',
+   // baseURL: '/api',
+  // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 60000 // request timeout
 })
@@ -48,7 +50,7 @@ service.interceptors.response.use(
       setToken(response.headers['access-token'])
     }
     const res = response.data
-    if (res.code !== 'ok') {
+    if (res.code !== '0') {
       Message({
         message: res.msg,
         type: 'error',

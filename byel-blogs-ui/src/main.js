@@ -6,11 +6,13 @@ import router from './router'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+
 import store from './store'
+// import axios from "axios";
 
 Vue.use(Element)
 Vue.config.productionTip = false
-
+// axios.defaults.baseURL = '/api'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

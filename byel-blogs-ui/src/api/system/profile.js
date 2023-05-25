@@ -2,12 +2,12 @@ import request from '@/utils/request'
 
 
 
-export function login(data) {
+export function login(user) {
   return request({
     url: '/users/login',
     method: 'post',
     data: {
-      data
+      user
     }
   })
 }
@@ -25,5 +25,14 @@ export function logout(token) {
     url: '/users/logout',
     method: 'get',
     params: { token }
+  })
+}
+export function register(user) {
+  return request({
+    url: '/users/register',
+    method: 'post',
+    data: {
+      user
+    }
   })
 }

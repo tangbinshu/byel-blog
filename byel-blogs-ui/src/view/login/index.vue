@@ -4,10 +4,10 @@
       <template slot="content">
         <el-form ref="form" :model="form" :rules="loginRules" label-width="60px" label-position="left">
           <h2>不远尔来登录</h2>
-          <el-form-item label="账号">
+          <el-form-item label="账号" prop="username">
             <el-input v-model="form.username" placeholder="请输入账号"></el-input>
           </el-form-item>
-          <el-form-item label="密码">
+          <el-form-item label="密码" prop="password">
             <el-input v-model="form.password" placeholder="请输入密码" show-password></el-input>
           </el-form-item>
 
@@ -28,13 +28,6 @@ export default {
   name: 'Login',
   components: { bg },
   data() {
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('密码必须超过六位'))
-      } else {
-        callback()
-      }
-    }
     return {
       form: {
         username: '',
@@ -42,7 +35,15 @@ export default {
       },
       loginRules:{
         username:[{required: true, message: '必须输入', trigger: 'blur'}],
-        password:[{required: true, message: '必须输入', validator: validatePassword }]
+        password:[{required: true, message: '必须输入', trigger: 'blur'},
+          { validator: (rule, value, callback) => {
+              if (false) {
+                callback(new Error('密码必须超过六位'))
+              } else {
+                callback()
+              }
+            }, trigger: 'blur' }
+        ]
       },
       loading:false,
       redirect: undefined,
@@ -61,21 +62,17 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.form)
             .then(() => {
-              alert(11111)
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-              this.loading = false
+              this.$message({
+                message: '登陆成功',
+                type: 'success'
+              });
+              this.$router.push('/index/homePage')
             })
             .catch(() => {
               this.loading = false
             })
-
-
-        }else {
-          console.log("login error")
-          return false
         }
       })
-      this.$router.push('/index/homePage')
     }
   }
 }

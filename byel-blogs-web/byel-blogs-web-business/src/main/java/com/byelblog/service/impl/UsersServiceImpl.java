@@ -88,4 +88,14 @@ public class UsersServiceImpl implements UsersService {
     public int qryLogin(Users user) {
         return this.usersDao.qryLogin(user);
     }
+
+    @Override
+    public int qryUserNameExist(Users user) {
+        return this.usersDao.qryUserNameExist(user);
+    }
+
+    @Override
+    public int qryEmailExist(Users user) {
+        return this.usersDao.qryEmailExist(user);
+    }
 }
