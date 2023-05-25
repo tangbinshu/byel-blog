@@ -37,7 +37,7 @@ export default {
         username:[{required: true, message: '必须输入', trigger: 'blur'}],
         password:[{required: true, message: '必须输入', trigger: 'blur'},
           { validator: (rule, value, callback) => {
-              if (false) {
+              if (this.form.password.length<5) {
                 callback(new Error('密码必须超过六位'))
               } else {
                 callback()
