@@ -11,15 +11,17 @@
    <back-top></back-top>
 
 
-
   </el-container>
 
 </template>
 
 <script>
+
 import HeaderBar from "./HeaderBar/index.vue";
 import MainPage from "./MainPage/index.vue";
 import BackTop from "./BackTop/index.vue";
+import {startSakura} from "../view/js/fullScreenFlower";
+
 export default {
   name: "index.vue",
   components: {
@@ -36,6 +38,7 @@ export default {
 
   },
   mounted(){
+    startSakura()
     window.addEventListener('scroll', this.handleScroll, true)
   },
   methods:{
@@ -54,8 +57,8 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background: url("../assets/brage2.jpg") no-repeat fixed;
+  background-size: contain;
+  background: url("../assets/4.jpg") no-repeat fixed;
 }
 .el-header{
   width: 100%;

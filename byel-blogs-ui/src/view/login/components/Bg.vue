@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <div class="main-image">
-      <img src="@/assets/blue.jpg" alt="" style="width: 900px;height: 600px;">
+      <span class="image-title">不远尔来的blogs</span>
+      <img src="@/assets/10.jpg" alt="" style="width: 900px;height: 600px;">
     </div>
     <div class="f_c">
       <slot name="content" />
@@ -28,7 +29,7 @@ export default {
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: linear-gradient(to right,rgb(5 3 0), rgb(79 23 150));
+  background: linear-gradient(to right,rgb(192 161 91), rgb(226 218 236));
   height:100vh;
 }
 
@@ -36,7 +37,6 @@ export default {
   position: absolute;
   width: 900px;
   height: 600px;
-  background-color: yellow;
   margin-top: 150px;
   left: 8%;
   overflow: hidden;
@@ -57,5 +57,12 @@ export default {
   opacity: 0.85;
   z-index: 3;
 }
-
+.image-title{
+  position: absolute;
+  left: 50px;
+  top: 20px;
+  color: white;
+  font-size: 25px;
+  letter-spacing: 4px;
+}
 </style>

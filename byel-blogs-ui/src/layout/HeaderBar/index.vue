@@ -9,19 +9,16 @@
       <div><i class="el-icon-alarm-clock"></i><a href="javascript:void(0);" @click="to('/index/timer')">时间轴</a></div>
       <div><i class="el-icon-menu"></i><a href="javascript:void(0);" @click="to('/index/classify')">分类</a></div>
       <div><i class="el-icon-s-comment"></i><a href="javascript:void(0);" @click="to('/index/commentArea')">留言区</a></div>
-      <div><i class="el-icon-headset"></i><a href="javascript:void(0);" @click="to('/index/musicSpace')">时刻律动</a></div>
+<!--      <div><i class="el-icon-headset"></i><a href="javascript:void(0);" @click="to('/index/musicSpace')">时刻律动</a></div>-->
       <el-dropdown>
   <span class="el-dropdown-link" @click="to('/index/personCenter')">
     <i class="el-icon-user-solid"></i>
-    个人中心
-
+ {{username}}
   </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>个人信息</el-dropdown-item>
-          <el-dropdown-item>收藏</el-dropdown-item>
-          <el-dropdown-item></el-dropdown-item>
-          <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-          <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+          <el-dropdown-item>登出</el-dropdown-item>
+
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -34,6 +31,7 @@ export default {
   name: "index",
   data() {
     return {
+      username:this.$store.getters.username
 
 
     }

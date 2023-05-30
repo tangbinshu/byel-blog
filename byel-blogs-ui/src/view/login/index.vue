@@ -2,12 +2,12 @@
   <div>
     <bg>
       <template slot="content">
-        <el-form ref="form" :model="form" :rules="loginRules" label-width="60px" label-position="left">
+        <el-form ref="form" :model="form" :rules="loginRules" label-width="0" label-position="left">
           <h2>不远尔来登录</h2>
-          <el-form-item label="账号" prop="username">
-            <el-input v-model="form.username" placeholder="请输入账号"></el-input>
+          <el-form-item  prop="username">
+            <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
           </el-form-item>
-          <el-form-item label="密码" prop="password">
+          <el-form-item  prop="password">
             <el-input v-model="form.password" placeholder="请输入密码" show-password></el-input>
           </el-form-item>
 
@@ -23,7 +23,6 @@
 
 <script>
 import bg from './components/Bg.vue'
-import router from "../../router";
 export default {
   name: 'Login',
   components: { bg },
@@ -84,11 +83,17 @@ h2{
   text-align: center;
 }
 .el-form-item{
-  padding: 0 20px ;
+  padding: 8px 20px ;
 }
 
 >>> .el-input__inner{
   border: none !important;
   border-bottom: 1px solid rgba(136,136,136,.2) !important;
+}
+.el-button{
+  width: 90px;
+}
+.el-form el-form--label-left{
+  height: 330px;
 }
 </style>
